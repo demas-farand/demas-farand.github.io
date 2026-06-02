@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Creative Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #f1efea;
+            --accent-red: #ea2727;
+            --text-dark: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+            scroll-behavior: smooth;
+        }
+
+        /* Layout Section Standard */
+        section {
+            min-height: 100vh;
+            padding: 6rem 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* border-bottom: 1px solid #e0ddd5; */
+			border-bottom: none;
+        }
+
+        /* Tipografi */
+        h1, h2, h3 {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-red);
+        }
+
+        h1 { font-size: clamp(4rem, 10vw, 8rem); line-height: 1; margin-bottom: 1rem; }
+        h2 { font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1.5rem; }
+        
+        p, li {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Layout Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+        .meta-info {
+            display: flex; justify-content: space-between;
+            border-top: 1px solid var(--text-dark);
+            border-bottom: 1px solid var(--text-dark);
+            padding: 15px 0; margin-top: 2rem; font-weight: 600; font-size: 0.9rem;
+        }
+
+        .box { background: var(--text-dark); color: white; padding: 3rem 2rem; text-align: center; }
+        .box h3 { color: white; font-family: 'Inter', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;}
+
+        /* =========================================
+           ANIMASI SMOOTH (Sistem Reset & Reveal)
+           ========================================= */
+        
+        /* State Awal (Disembunyikan & Digeser) */
+        .hidden-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hidden-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hidden-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hidden-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* State Aktif (Saat di-scroll masuk viewport) */
+        .show {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
+
+        /* Transisi Delay agar elemen muncul berurutan */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+
+        /* Media Query untuk Mobile */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+            .hidden-left, .hidden-right { transform: translateY(40px); /* Ubah slide miring jadi vertikal di HP */ }
+        }
+
+		/* =========================================
+   STYLE KHUSUS UNTUK HERO SECTION & LOGO 3D
+   ========================================= */
+
+#home {
+    align-items: center; /* Memastikan semua konten di hero berada di tengah */
+    text-align: center;
+}
+
+/* Pembungkus agar garis top & bottom rapi seperti digambar */
+.hero-content-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container untuk Teks Portfolio dan Logo */
+.hero-title-container {
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+/* Tulisan PORTFOLIO diperbesar agar logo muat */
+.hero-title-container h1 {
+    font-size: clamp(6rem, 16vw, 14rem); /* Ukuran raksasa */
+    line-height: 0.8;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+    color: var(--accent-red);
+    transform-origin: bottom; /* Agar animasi munculnya dari bawah Teks */
+}
+
+/* Posisi Absolut untuk Logo di tengah teks */
+/* Posisi Absolut untuk Logo di Pojok Kanan Bawah */
+.logo-corner-wrapper {
+    position: absolute;
+    bottom: -75px; /* Menggeser logo sedikit ke luar batas bawah teks */
+    right: -165px;  /* Menggeser logo sedikit ke luar batas kanan teks */
+    z-index: 2; 
+    width: clamp(150px, 20vw, 250px); /* Ukurannya sedikit diperkecil agar pas di sudut */
+    pointer-events: none;
+}
+
+/* Animasi 3D Mengambang (Floating) */
+@keyframes float3D {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); } /* Bergerak naik & sedikit miring */
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-logo {
+    width: 100%;
+    height: auto;
+    animation: float3D 5s ease-in-out infinite; /* Mengambang terus menerus */
+    filter: drop-shadow(0px 25px 20px rgba(0,0,0,0.4)); /* Efek bayangan agar 3D */
+}
+
+/* Desain Header Atas (Creative ... Photography) */
+.hero-top-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #c2c2c2;
+    padding-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+}
+
+#intro {
+    /* GANTI dengan nama file atau path gambar background Anda */
+    background-image: url('images/bg_sect1.png'); 
+    background-size: cover; /* Memastikan gambar menutupi seluruh area section */
+    background-position: center; /* Memosisikan gambar tepat di tengah */
+    background-repeat: no-repeat; /* Mencegah gambar berulang/tiled */
+    
+    /* Agar isi konten tidak terlalu menempel ke tepi saat ada background */
+    position: relative; 
+}
+
+/* Jika nanti Anda ingin menambahkan background untuk section lain, 
+   Anda tinggal memanggil ID-nya seperti ini: */
+
+#about {
+    background-image: url('/images/bg_sect2.png'); /* Pastikan nama file sesuai */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    position: relative; /* Wajib ada agar judul bisa 'dipaku' di dalam section ini */
+    color: var(--text-dark); 
+    
+    /* Tambahkan padding-top yang cukup besar agar konten grid di bawahnya 
+       tidak bertabrakan dengan judul yang ada di atas */
+    padding-top: 12rem; 
+}
+
+/* Kunci posisi judul tepat di pojok kanan atas */
+.about-heading-wrapper {
+    position: absolute;
+    top: 3rem;    /* Atur seberapa dekat ke langit-langit (atas) */
+    right: 5%;    /* Atur seberapa dekat ke dinding kanan */
+    text-align: right;
+    margin: 0;
+}
+
+.about-heading-wrapper h2 {
+    color: white !important; 
+    font-size: clamp(3rem, 7vw, 6rem); 
+    line-height: 0.9;
+    margin: 0;
+}
+
+/* #style {
+    background-image: url('gambar_style.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+
+    </style>
+</head>
+<body>
+
+    <section id="home">
+        <div class="hero-content-wrapper">
+            
+            <div class="hero-top-bar hidden-up delay-100">
+                <span>SOFTWARE</span>
+                <span style="letter-spacing: 5px; font-weight: bold;">● ○ <span style="color: var(--accent-red)">●</span></span>
+                <span>DEVELOPER</span>
+            </div>
+            
+            <div class="hero-title-container">
+                <h1 class="hidden-up delay-200">PORTFOLIO</h1>
+                
+                <div class="logo-corner-wrapper">
+                    <div class="hidden-scale delay-400">
+                        <img src="/images/icon_title.png" alt="3D Camera Logo" class="floating-logo">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="meta-info hidden-up delay-300" style="width: 100%; border-top: none; border-bottom: 1px solid #c2c2c2; padding-bottom: 15px;">
+                <!-- <span>( Studio Shodwe )</span> -->
+                <!-- <span>( Photographer )</span> -->
+                <!-- <span>( August 12, 2025 )</span> -->
+            </div>
+
+        </div>
+    </section>
+
+    <section id="intro">
+        <div class="grid-2">
+            <div>
+                <h2 class="hidden-left">INTRODUCTION</h2>
+                <p class="hidden-up delay-100"><strong>Capturing Stories Through the Lens</strong></p>
+                <p class="hidden-up delay-200">Welcome to my photography portfolio. I'm Drew Feig, a passionate photographer dedicated to turning ordinary moments into timeless visual stories.</p>
+            </div>
+            <div class="hidden-scale delay-300" style="background-color: #ddd; height: 350px; display: flex; align-items: center; justify-content: center;">
+                [Gambar Placeholder]
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        
+        <div class="about-heading-wrapper">
+            <h2 class="hidden-right">ABOUT ME</h2>
+        </div>
+
+        <div class="grid-2" style="margin-top: 2rem;">
+            <div class="hidden-left delay-100">
+                <p><strong>Background:</strong> Photography</p>
+                <p><strong>Based in:</strong> Any City</p>
+                <p><strong>Experience:</strong> 12 years in photography</p>
+            </div>
+            <div class="hidden-right delay-200">
+                <p><strong>Focus Area:</strong></p>
+                <ul style="list-style-type: none;">
+                    <li>- Portraits, Weddings, Fashion</li>
+                    <li>- Commercial / Product</li>
+                    <li>- Lifestyle & Travel</li>
+                </ul>
+                <br>
+                <p style="font-style: italic;">"I believe every photo should evoke emotion and tell a story without words."</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="style">
+        <h2 class="hidden-up">PHOTOGRAPHY STYLE</h2>
+        <p class="hidden-up delay-100">Consistent visual style = powerful personal brand</p>
+        
+        <div class="grid-3" style="margin-top: 3rem;">
+            <div class="hidden-scale delay-100">
+                <div style="height: 200px; background: #ddd;"></div>
+                <p style="margin-top: 1rem; text-align: center;">Natural Light & Candid Emotions</p>
+            </div>
+            <div class="hidden-scale delay-200">
+                <div style="height: 200px; background: #aaa;"></div>
+                <p style="margin-top: 1rem; text-align: center;">Timeless, Editorial Look</p>
+            </div>
+            <div class="hidden-scale delay-300">
+                <div style="height: 200px; background: #777;"></div>
+                <p style="margin-top: 1rem; text-align: center;">Clean Composition & Framing</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio-categories">
+        <h2 class="hidden-left">PORTFOLIO - WEDDINGS & COUPLES</h2>
+        <div class="meta-info hidden-up delay-100">
+            <span>Classic Theme</span>
+            <span>Wedding Ceremony</span>
+            <span>Monochrome Romance</span>
+        </div>
+        
+        <div style="margin: 4rem 0;"></div>
+        
+        <h2 class="hidden-right delay-100">COMMERCIAL / PRODUCT</h2>
+        <div class="hidden-up delay-200">
+            <p><strong>Lighting Setup:</strong> Key Light Softbox (45° angle) for flattering key highlights</p>
+            <p><strong>Concept Direction:</strong> Clean, minimal, bold contrast</p>
+            <p><strong>Client Goals:</strong> Differentiate in crowded market through premium visual identity</p>
+            <p><em>"I help brands visually express their identity."</em></p>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2 class="hidden-up">PACKAGES & PRICING</h2>
+        <div class="grid-3" style="margin-top: 3rem;">
+            <div class="box hidden-up delay-100">
+                <h3>STARTER</h3>
+                <br><p>1 sessions</p><p>50 edits</p><p>1 location</p>
+            </div>
+            <div class="box hidden-up delay-200" style="background-color: var(--accent-red);">
+                <h3 style="color: white;">PREMIUM</h3>
+                <br><p>Multiple outfits</p><p>Edited gallery</p><p>Prints</p>
+            </div>
+            <div class="box hidden-up delay-300">
+                <h3>CUSTOM</h3>
+                <br><p>Custom Shoots Available</p><p>contact for quote</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: var(--text-dark); color: white;">
+        <h2 class="hidden-up" style="color: var(--accent-red);">LET'S CREATE TOGETHER</h2>
+        <p class="hidden-up delay-100">Interested in working together?</p>
+        <p class="hidden-up delay-200">Whether you're a brand, a couple, or an individual - let's create powerful images you'll cherish.</p>
+        
+        <div class="grid-2" style="margin-top: 4rem;">
+            <div class="hidden-left delay-300">
+                <h3 style="color: var(--accent-red); font-size: 2rem; margin-bottom: 1rem;">CONTACT DETAILS</h3>
+                <p><strong>Based in:</strong> 123 Anywhere St., Any City</p>
+                <p><strong>Email:</strong> hello@reallygreatsite.com</p>
+                <p><strong>Phone:</strong> +123-456-7890</p>
+            </div>
+            <div class="hidden-right delay-400">
+                <p><strong>Website:</strong> www.reallygreatsite.com</p>
+                <p><strong>Social:</strong> @reallygreatsite</p>
+                <br>
+                <p style="color: var(--accent-red);"><em>Every moment is worth capturing - let's make it unforgettable.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Memilih semua elemen yang memiliki kelas animasi awalan "hidden-"
+            const animElements = document.querySelectorAll('.hidden-up, .hidden-left, .hidden-right, .hidden-scale');
+
+            // Konfigurasi Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Animasi mulai saat elemen 15% terlihat di layar
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Jika masuk ke layar, tambahkan class 'show' untuk menjalankan animasi
+                        entry.target.classList.add('show');
+                    } else {
+                        // JIKA KELUAR LAYAR, HAPUS CLASS 'show'. 
+                        // Ini akan me-reset animasi agar bisa dimainkan lagi saat discroll kembali.
+                        entry.target.classList.remove('show');
+                    }
+                });
+            }, observerOptions);
+
+            // Terapkan observer ke semua elemen
+            animElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

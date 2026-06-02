@@ -1,124 +1,167 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Portfolio Demas</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Muhammad Demas Farand Kalya Abdillah Wibowo. A Mobile Developer and Game Developer based in Bandung, focusing on scalable app architecture and complex game mechanics.">
+    <meta name="keywords" content="Muhammad Demas Farand Kalya Abdillah Wibowo, Demas Farand, Mobile Developer Bandung, React Native Developer, Unity Game Developer, Freelance Developer">
+    <meta name="author" content="Muhammad Demas Farand Kalya Abdillah Wibowo">
+    <title>Demas Farand - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    <div id="splash-screen">
+        <div class="splash-text">WELCOME.</div>
+    </div>
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>GREETINGS!<br/>
-						I'M DEMAS FARAND</h1>
-						<p style="color: #cc415c;">An undergraduate college student, major at Computer Science. I'm aspiring to become a Game
-							Developer!</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+    <div id="dynamic-bg"></div>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Pancakes</a>
-					</header>
+    <nav>
+        <button class="nav-btn btn-left" data-target="page-folio">Folio</button>
+        <button class="nav-btn btn-home" data-target="page-main">HOME</button>
+        <button class="nav-btn btn-right" data-target="page-about">About</button>
+    </nav>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">My Profile</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://object-oriented-pancakes.itch.io/" <i class="fab fa-itch-io"></i><span class="label"></span></a></li>
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="https://www.instagram.com/objt_oriented_pancakes/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="https://github.com/demas-farand" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+    <main>
+        <div id="page-main" class="page active">
+            <div class="carousel-wrapper parallax-target">
+                <button class="arrow-btn arrow-prev">&#10094;</button>
+                <div class="carousel-container">
+                    
+                    <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000" alt="Mobile" class="card-bg">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <div style="transform: translateZ(40px);">
+                                <h1>MOBILE ARCHITECTURE</h1>
+                                <p style="margin: 20px 0; color: #ddd; max-width: 500px;">Showcase of scalable application architecture. Built to handle complex state management and seamless user experiences.</p>
+                                <div class="tags"><span class="tag">React Native CLI</span><span class="tag">Expo Framework</span></div>
+                            </div>
+                        </div>
+                    </div>
 
-				<!-- Main -->
-					<div id="main">
+                    <div class="stack-card">
+                        <img src="/images/unity.jpg" alt="Game Dev" class="card-bg">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <div style="transform: translateZ(40px);">
+                                <h1>GAME DEVELOPMENT</h1>
+                                <p style="margin: 20px 0; color: #ddd; max-width: 500px;">Designing and building core game mechanics, focusing on system architecture and interactive logic in Unity.</p>
+                                <div class="tags"><span class="tag">Unity Engine</span></div>
+                            </div>
+                        </div>
+                    </div>
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<h2><a href="#">Current Ungoing<br />
-									Or Finished Project</a></h2>
-									<p></p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									
-								</ul>
-							</article>
+                    <!-- <div class="stack-card">
+                        <img src="https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&q=80&w=1000" alt="Writing" class="card-bg">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <div style="transform: translateZ(40px);">
+                                <h1>CREATIVE WRITING</h1>
+                                <p style="margin: 20px 0; color: #ddd; max-width: 500px;">"Sekelompok Paus, Ketidaklahiran, dan Debu yang berdesir."<br>Exploring surrealist and nihilistic narratives.</p>
+                                <div class="tags"><span class="tag">Novel</span><span class="tag">World-building</span></div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <button class="arrow-btn arrow-next">&#10095;</button>
+            </div>
+        </div>
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<h2><a href="#">88th investigation
-										team<br />
-										[WIP]</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>Horror FPS Games that centered around on Haunting Apartments, with low poly assets as its main captived themes.
-									It originaly purposed as Final Semester Assignment, so the gameplay had never actually polished and published.</p>
-								</article>
-								<article>
-									<header>
-										<h2><a href="#">Unwaked Knight<br />
-										[WIP]</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>A Metroidvania gamestyle platformer with dark fantasy theme.
-									It originaly purposed as Final Semester Assignment, so the gameplay had never actually polished and published</p>
-								</article>
-								<article>
-									<header>
-										<h2><a href="#">Web Attendance System<br />
-										</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-									<p>The Web Attendance System is a modern and efficient platform designed to streamline attendance tracking for educational
-									institutions, businesses, or other organizations. This project leverages the Laravel framework for its robust backend
-									and web interface, paired with Firebase Realtime Database for seamless mobile integration.</p>
-									
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://rizarh.itch.io/7-vices">7 Vices<br />
-										</a></h2>
-									</header>
-									<a href="https://rizarh.itch.io/7-vices" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-									<p>A RPG Turn-based Typing game designed and developed by  7 people in a team for Boss Rush Jam 2025.
-									My role in development was to create a Typing System and integrate it into the gameplay mechanics</p>
-								</article>
-					</div>
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+        <div id="page-folio" class="page">
+            <div class="folio-container parallax-target">
+                
+                <div class="folio-section">
+                    <!-- <div class="section-header"><h2 class="section-title">Game Development Project</h2><span class="section-pill pill-red">モバイルアプリ</span></div> -->
+					<div class="section-header"><h2 class="section-title">Game Development Projects</h2></div>
+					
+                    <div class="grid">
+                        
+                        <a href="https://rizarh.itch.io/7-vices" class="grid-item">
+                            <!-- <div class="badge-new">v0.77</div> -->
+                            <img src="images/logo_game1.png" alt="App" class="project-img">
+                            <div class="project-info">
+                                <h3>7 Vices</h3>
+                                <span>Game</span>
+                                <div class="hover-details">
+                                    <div class="hover-inner">
+                                        <p class="hover-desc">A RPG Turn-based Typing game designed and developed by 7 people in a team for Boss Rush Jam 2025. My role in development was to create a Typing System and integrate it into the gameplay mechanics</p>
+                                        <div class="tech-stack-mini"><span>Unity Engine</span><span>C#</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
 
-			</div>
+                        <!-- <a href="#" class="grid-item">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=400" alt="App" class="project-img">
+                            <div class="project-info">
+                                <h3>Freelance Project</h3>
+                                <span>PT. Kemala Inti Solusi</span>
+                                <div class="hover-details">
+                                    <div class="hover-inner">
+                                        <p class="hover-desc">Developing custom mobile solutions and receiving continuous mentorship from senior developers.</p>
+                                        <div class="tech-stack-mini"><span>Mobile Dev</span><span>UI/UX</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a> -->
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+                    </div>
+                </div>
 
-	</body>
+                <div class="folio-section">
+                    <!-- <div class="section-header"><h2 class="section-title">Mobile Projects</h2><span class="section-pill pill-dark">ゲーム開発</span></div> -->
+					<div class="section-header"><h2 class="section-title">Mobile Projects</h2></div>
+                    <div class="grid">
+                        <a href="https://play.google.com/store/apps/details?id=id.go.kemenkeu.lelang&pcampaignid=web_share" class="grid-item">
+                            <!-- <div class="badge-new">New</div> -->
+                            <img src="/images/logo.webp" alt="Game" class="project-img">
+                            <div class="project-info">
+                                <h3>Lelang Indonesia</h3>
+                                <span>Mobile Application</span>
+                                <div class="hover-details">
+                                    <div class="hover-inner">
+                                        <p class="hover-desc">An application designed to facilitate public auctions, allowing for verbal or written bidding to achieve the highest price. The process is preceded by an official announcement and presided over by an authorized Auctioneer.</p>
+                                        <div class="tech-stack-mini"><span>React Native</span><span>TypeScript</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-about" class="page">
+            <div class="glass-panel about-content parallax-target">
+                <div style="transform: translateZ(40px);">
+                    
+                    <h1 class="typing-hello">HOWDY!</h1>
+
+                    <p>I am Demas Farand. I like creating things, from complex mobile application logic to immersive game mechanics. A Dedicated developer with a multidisciplinary background in Mobile, Web, and Game Development. My core expertise lies in React Native for high-performance mobile apps, complemented by deep experience in Unity and C# for complex interactive projects. I am also comfortable building end-to-end solutions as a Full-stack Web Developer. I thrive in dynamic environments where I can leverage my diverse technical stack to solve complex problems and build engaging user experiences</p>
+                    <br>
+                    <!-- <p>Currently working as a Freelance Mobile Developer.</p> -->
+                    <br>
+                    <p>📍 Bandung, Indonesia</p>
+                    
+                    <div class="contact-container">
+                        <button class="contact-btn">Contact</button>
+                        <div class="social-links">
+                            <a href="https://github.com/demas-farand" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/demas-farand-529519216" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <!-- <a href="#" class="social-icon" title="Steam"><i class="fab fa-steam"></i></a> -->
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=demas.farand@gmail.com&su=Hello!%20I%20saw%20your%20portfolio" target="_blank" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/assets/scripts/script.js"></script>
+</body>
 </html>
